@@ -15,7 +15,7 @@ import nature from "../assets/images/nature.avif";
 import uae from "../assets/images/uae.avif";
 import sarah from "../assets/images/sarah.avif";
 import MESHA from "../assets/images/MESHA.avif";
-import emma from "../assets/images/emma.avif";
+import emma from "../assets/images/EMMA.avif";
 
 const heroSlides = ref([
   {
