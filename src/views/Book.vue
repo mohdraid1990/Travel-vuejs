@@ -16,7 +16,7 @@ const selectedLandmarks = ref([]);
 const selectedDestination = ref(null);
 import berlin from "../assets/images/berlin.avif";
 import madrid from "../assets/images/madrid.avif";
-import Amsterdam from "../assets/images/amsterdam.avif";
+import Amsterdam from "../assets/images/Amsterdam.avif";
 import Zurich from "../assets/images/Zurich.avif";
 import Spa from "../assets/images/Spa access.jpeg";
 import Adventure from "../assets/images/adventure.jpeg";
