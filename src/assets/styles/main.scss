@@ -1,0 +1,664 @@
+@use "sass:color";
+
+// Color Variables
+$primary-color: #3498db;
+$secondary-color: #e74c3c;
+$accent-color: #f39c12;
+$success-color: #2ecc71;
+$warning-color: #f1c40f;
+$danger-color: #e74c3c;
+$info-color: #3498db;
+$white: #FFFFFF;
+$black: #000000;
+$border-color: #E9ECEF;
+
+// Text Colors
+$text-color: #2c3e50;
+$text-light: #7f8c8d;
+$text-dark: #2c3e50;
+$text-muted: #95a5a6;
+
+// Gray Colors
+$gray-light: #ecf0f1;
+$gray-dark: #343A40;
+$gray: #6C757D;
+$gray-100: #F8F9FA;
+$gray-200: #E9ECEF;
+$gray-300: #DEE2E6;
+$gray-400: #CED4DA;
+$gray-500: #ADB5BD;
+$gray-600: #6C757D;
+$gray-700: #495057;
+$gray-800: #343A40;
+$gray-900: #212529;
+
+// Typography
+$font-primary: 'Poppins', sans-serif;
+$font-secondary: 'Playfair Display', serif;
+$font-size-base: 16px;
+$font-size-sm: 14px;
+$font-size-lg: 18px;
+$font-size-xl: 24px;
+$font-size-xxl: 32px;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+
+// Spacing
+$spacing-xs: 0.25rem;
+$spacing-sm: 0.5rem;
+$spacing-md: 1rem;
+$spacing-lg: 1.5rem;
+$spacing-xl: 2rem;
+$spacing-xxl: 3rem;
+
+// Border Radius
+$border-radius-sm: 4px;
+$border-radius-md: 8px;
+$border-radius-lg: 12px;
+$border-radius-xl: 16px;
+$border-radius-full: 9999px;
+
+// Shadows
+$shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+$shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+$shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1);
+
+// Transitions
+$transition-fast: 0.2s ease;
+$transition-normal: 0.3s ease;
+$transition-slow: 0.5s ease;
+
+// Breakpoints
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+$breakpoint-xxl: 1400px;
+
+// Mixins
+@mixin responsive($breakpoint) {
+  @if $breakpoint == sm {
+    @media (max-width: $breakpoint-sm) { @content; }
+  }
+  @if $breakpoint == md {
+    @media (max-width: $breakpoint-md) { @content; }
+  }
+  @if $breakpoint == lg {
+    @media (max-width: $breakpoint-lg) { @content; }
+  }
+  @if $breakpoint == xl {
+    @media (max-width: $breakpoint-xl) { @content; }
+  }
+  @if $breakpoint == xxl {
+    @media (max-width: $breakpoint-xxl) { @content; }
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// Enhanced Animations
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes rotateIn {
+  from {
+    transform: rotate(-180deg) scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: rotate(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+// Global Styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-primary;
+  font-size: $font-size-base;
+  line-height: 1.6;
+  color: $text-dark;
+  background-color: $gray-light;
+  overflow-x: hidden;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+}
+
+// Enhanced Button Styles
+.btn {
+  display: inline-block;
+  padding: $spacing-sm $spacing-lg;
+  border-radius: $border-radius-md;
+  font-weight: $font-weight-medium;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all $transition-normal;
+  border: none;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba($white, 0.1);
+    transform: translateX(-100%);
+    transition: transform $transition-normal;
+    z-index: -1;
+  }
+
+  &:hover::before {
+    transform: translateX(0);
+  }
+
+  &-primary {
+    background-color: $primary-color;
+    color: $white;
+
+    &:hover {
+      background-color: color.adjust($primary-color, $lightness: -10%);
+      transform: translateY(-3px);
+   
+    }
+  }
+
+  &-secondary {
+    background-color: $secondary-color;
+    color: $white;
+
+    &:hover {
+      background-color: color.adjust($secondary-color, $lightness: -10%);
+      transform: translateY(-3px);
+
+    }
+  }
+
+  &-outline {
+    background-color: transparent;
+    border: 2px solid $primary-color;
+    color: $primary-color;
+
+    &:hover {
+      background-color: $primary-color;
+      color: $white;
+      transform: translateY(-3px);
+    
+    }
+  }
+}
+
+// Enhanced Animation Classes
+.fade-in {
+  animation: fadeIn 0.8s ease forwards;
+}
+
+.slide-up {
+  animation: slideUp 0.8s ease forwards;
+  animation-delay: var(--delay, 0s);
+}
+
+.slide-in {
+  animation: slideIn 0.8s ease forwards;
+  animation-delay: var(--delay, 0s);
+}
+
+.scale-in {
+  animation: scaleIn 0.8s ease forwards;
+  animation-delay: var(--delay, 0s);
+}
+
+.rotate-in {
+  animation: rotateIn 0.8s ease forwards;
+  animation-delay: var(--delay, 0s);
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.shimmer {
+  background: linear-gradient(90deg, transparent, rgba($white, 0.2), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+// Enhanced Card Styles
+.card {
+  background: $white;
+  border-radius: $border-radius-lg;
+  overflow: hidden;
+  box-shadow: $shadow-md;
+  transition: all $transition-normal;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: $shadow-lg;
+  }
+  
+  &-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform $transition-normal;
+    
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+  
+  &-content {
+    padding: $spacing-lg;
+  }
+  
+  &-title {
+    font-family: $font-secondary;
+    font-size: 1.5rem;
+    margin-bottom: $spacing-sm;
+    transition: color $transition-normal;
+    
+    &:hover {
+      color: $primary-color;
+    }
+  }
+  
+  &-text {
+    color: $text-light;
+    margin-bottom: $spacing-md;
+  }
+}
+
+// Enhanced Typography
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-secondary;
+  font-weight: $font-weight-bold;
+  line-height: 1.2;
+  margin-bottom: $spacing-md;
+  color: $text-dark;
+}
+
+h1 {
+  font-size: 3rem;
+  
+  @include responsive(md) {
+    font-size: 2.5rem;
+  }
+  
+  @include responsive(sm) {
+    font-size: 2rem;
+  }
+}
+
+h2 {
+  font-size: 2.5rem;
+  
+  @include responsive(md) {
+    font-size: 2rem;
+  }
+  
+  @include responsive(sm) {
+    font-size: 1.75rem;
+  }
+}
+
+h3 {
+  font-size: 2rem;
+  
+  @include responsive(md) {
+    font-size: 1.75rem;
+  }
+  
+  @include responsive(sm) {
+    font-size: 1.5rem;
+  }
+}
+
+p {
+  margin-bottom: $spacing-md;
+  color: $text-light;
+}
+
+// Enhanced Section Styles
+.section {
+  padding: $spacing-xxl 0;
+  
+  @include responsive(md) {
+    padding: $spacing-xl 0;
+  }
+  
+  @include responsive(sm) {
+    padding: $spacing-lg 0;
+  }
+  
+  &-title {
+    text-align: center;
+    margin-bottom: $spacing-xl;
+    position: relative;
+    padding-bottom: $spacing-md;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: $primary-color;
+    }
+  }
+  
+  &-subtitle {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto $spacing-xl;
+    color: $text-light;
+  }
+}
+
+// Enhanced Grid Layouts
+.grid {
+  display: grid;
+  gap: $spacing-xl;
+  
+  &-2 {
+    grid-template-columns: repeat(2, 1fr);
+    
+    @include responsive(md) {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  &-3 {
+    grid-template-columns: repeat(3, 1fr);
+    
+    @include responsive(lg) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @include responsive(md) {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  &-4 {
+    grid-template-columns: repeat(4, 1fr);
+    
+    @include responsive(lg) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @include responsive(md) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+// Enhanced Form Styles
+.form-group {
+  margin-bottom: $spacing-lg;
+  
+  label {
+    display: block;
+    margin-bottom: $spacing-sm;
+    font-weight: $font-weight-medium;
+    color: $text-dark;
+  }
+  
+  input, textarea, select {
+    width: 100%;
+    padding: $spacing-md;
+    border: 1px solid $border-color;
+    border-radius: $border-radius-md;
+    font-family: $font-primary;
+    font-size: $font-size-base;
+    transition: all $transition-normal;
+    
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+    }
+  }
+  
+  textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+}
+
+// Enhanced Utility Classes
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-left { text-align: left; }
+
+.mt-1 { margin-top: $spacing-sm; }
+.mt-2 { margin-top: $spacing-md; }
+.mt-3 { margin-top: $spacing-lg; }
+.mt-4 { margin-top: $spacing-xl; }
+.mt-5 { margin-top: $spacing-xxl; }
+
+.mb-1 { margin-bottom: $spacing-sm; }
+.mb-2 { margin-bottom: $spacing-md; }
+.mb-3 { margin-bottom: $spacing-lg; }
+.mb-4 { margin-bottom: $spacing-xl; }
+.mb-5 { margin-bottom: $spacing-xxl; }
+
+.p-1 { padding: $spacing-sm; }
+.p-2 { padding: $spacing-md; }
+.p-3 { padding: $spacing-lg; }
+.p-4 { padding: $spacing-xl; }
+.p-5 { padding: $spacing-xxl; }
+
+.bg-light { background-color: $gray-light; }
+.bg-dark { background-color: $text-dark; }
+.bg-primary { background-color: $primary-color; }
+.bg-secondary { background-color: $secondary-color; }
+.bg-accent { background-color: $accent-color; }
+
+.text-light { color: $text-light; }
+.text-dark { color: $text-dark; }
+.text-primary { color: $primary-color; }
+.text-secondary { color: $secondary-color; }
+.text-accent { color: $accent-color; }
+.text-white { color: $white; }
+
+.rounded-sm { border-radius: $border-radius-sm; }
+.rounded-md { border-radius: $border-radius-md; }
+.rounded-lg { border-radius: $border-radius-lg; }
+.rounded-xl { border-radius: $border-radius-xl; }
+.rounded-full { border-radius: $border-radius-full; }
+
+.shadow-sm { box-shadow: $shadow-sm; }
+.shadow-md { box-shadow: $shadow-md; }
+.shadow-lg { box-shadow: $shadow-lg; }
+.shadow-xl { box-shadow: $shadow-xl; }
+
+// Enhanced Responsive Utilities
+.hide-sm {
+  @include responsive(sm) {
+    display: none;
+  }
+}
+
+.hide-md {
+  @include responsive(md) {
+    display: none;
+  }
+}
+
+.hide-lg {
+  @include responsive(lg) {
+    display: none;
+  }
+}
+
+.show-sm {
+  display: none;
+  @include responsive(sm) {
+    display: block;
+  }
+}
+
+.show-md {
+  display: none;
+  @include responsive(md) {
+    display: block;
+  }
+}
+
+.show-lg {
+  display: none;
+  @include responsive(lg) {
+    display: block;
+  }
+}
+
+// Enhanced Scrollbar
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: $gray-light;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $primary-color;
+  border-radius: $border-radius-full;
+  
+  &:hover {
+    background: color.adjust($primary-color, $lightness: -10%);
+  }
+}
+
+// Enhanced Selection
+::selection {
+  background: $primary-color;
+  color: $white;
+}
+
+// Media Breakpoints Mixins
+@mixin media-breakpoint-down($breakpoint) {
+  @if $breakpoint == sm {
+    @media (max-width: $breakpoint-sm) { @content; }
+  }
+  @if $breakpoint == md {
+    @media (max-width: $breakpoint-md) { @content; }
+  }
+  @if $breakpoint == lg {
+    @media (max-width: $breakpoint-lg) { @content; }
+  }
+  @if $breakpoint == xl {
+    @media (max-width: $breakpoint-xl) { @content; }
+  }
+  @if $breakpoint == xxl {
+    @media (max-width: $breakpoint-xxl) { @content; }
+  }
+} 
